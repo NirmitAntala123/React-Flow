@@ -36,7 +36,7 @@ const initialNodes = [
     type: "custom1",
     position: {
       x: 738.0404481942137,
-      y: 252.40236681109116,
+      y: 243.20899695538372,
     },
     data: {
       label: "Enter App",
@@ -48,7 +48,7 @@ const initialNodes = [
     selected: false,
     positionAbsolute: {
       x: 738.0404481942137,
-      y: 252.40236681109116,
+      y: 243.20899695538372,
     },
     dragging: false,
     style: {
@@ -204,9 +204,7 @@ const initialNodes = [
     style: {
       backgroundColor: "#00b77d",
     },
-    // "sourcePosition": 'right',
-    sourcePosition: "bottom",
-    targetPosition: "left",
+   
   },
   {
     id: "4",
@@ -283,8 +281,7 @@ const initialNodes = [
     style: {
       backgroundColor: "#7a64e8",
     },
-    //   sourcePosition: 'left',
-    // targetPosition: 'right',
+   
   },
   {
     id: "1",
@@ -507,8 +504,8 @@ const FlowEx1 = () => {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const [contextMenuPos, setContextMenuPos] = useState({ x: 0, y: 0 });
-  console.log(nodes);
-  console.log(edges);
+  // console.log(nodes);
+  // console.log(edges);
   const [selectedNode, setSelectedNode] = useState(null);
 
   const [nodeName, setNodeName] = useState("");
@@ -531,6 +528,7 @@ const FlowEx1 = () => {
     const id = `${++initialNodes.length}`;
     const newNode = {
       id,
+      type:'custom1',
       position: {
         x: Math.random() * 500,
         y: Math.random() * 500,
@@ -579,7 +577,7 @@ const FlowEx1 = () => {
             top: contextMenuPos.y,
           }}
         >
-          {/* <Node1 /> */}
+        
           <div className="updatenode__controls">
             <label>label:</label>
             <input
@@ -613,7 +611,6 @@ const FlowEx1 = () => {
     );
   };
 
-  const edgeTypes = { default: SmoothStepEdge };
   return (
     <>
       <button onClick={onClick} className="btn-add">
@@ -631,7 +628,7 @@ const FlowEx1 = () => {
         renderNode={onNodeClick}
         fitView
         connectionLineType="smoothstep"
-        edgeTypes={edgeTypes}
+        edgeTypes={{default: SmoothStepEdge}}
         defaultMarkerColor='black'
       >
         <MiniMap nodeColor={nodeColor} nodeStrokeWidth={3} zoomable pannable />
