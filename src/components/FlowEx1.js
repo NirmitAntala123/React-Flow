@@ -324,9 +324,9 @@ const initialEdges = [
       "targetHandle": "left2",
       "label":"No",
       "id": "reactflow__edge-1top1-2left2",
-        markerEnd: {
-          type: MarkerType.ArrowClosed,
-        },
+        // 'markerEnd': {
+        //   'type': "arrowclosed",
+        // },
   },
   {
       "source": "1",
@@ -477,16 +477,16 @@ const FlowEx1 = () => {
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const [contextMenuPos, setContextMenuPos] = useState({ x: 0, y: 0 });
   const [EdgeMenuPos, setEdgeMenuPos] = useState({ x: 0, y: 0 });
-
   // console.log(nodes);
   // console.log(edges);
   const [selectedNode, setSelectedNode] = useState(null);
   const [selecteEdge, setSelectedEdge] = useState(null);
-console.log(selecteEdge);
   const [nodeName, setNodeName] = useState("");
   const [nodeBg, setNodeBg] = useState("");
   const [edgeName, setedgeName] = useState("");
-
+  const [edgeArrow, setedgeArrow] = useState("");
+  console.log(edgeArrow);
+  const [isChecked, setIsChecked] = useState(false);
   const handleNodeContextMenu = (event, node) => {
     event.preventDefault();
     console.log(node);
@@ -502,7 +502,9 @@ console.log(selecteEdge);
     setSelectedEdge(node);
     setEdgeMenuPos({ x: event.pageX, y: event.pageY });
     setedgeName(node.label);
-    // setNodeBg(node.style.backgroundColor);
+    setedgeArrow(node.markerEnd);
+    node.markerEnd === undefined ? setIsChecked(false) : setIsChecked(true)
+    // console.log(node.markerEnd);
   };
 
   const onConnect = useCallback(
@@ -545,26 +547,24 @@ console.log(selecteEdge);
         return node;
       })
     );
-  }, [edgeName, setNodes, nodeBg]);
-  useEffect(() => {
     setEdges((nds) =>
-      nds.map((node) => {
-        // console.log(node);
-        if (selecteEdge) {
-          // console.log(selecteEdge);
-          if (node.id === selecteEdge.id) {
-            // console.log();
-            node = {
-              ...node,
-              label: edgeName,
-            };
-            // node.style = { ...node.style, backgroundColor: nodeBg };
-          }
+    nds.map((node) => {
+      if (selecteEdge) {
+        if (node.id === selecteEdge.id) {
+          node = {
+            ...node,
+            label: edgeName,
+          };
+          isChecked? node = { ...node, markerEnd: {type: 'arrowclosed'}   }:node = { ...node, markerEnd: undefined   }
+          // node.style = { ...node.style, backgroundColor: nodeBg };
         }
-        return node;
-      })
-    );
-  }, [edgeName, setEdges]);
+      }
+      return node;
+    })
+  );
+  }, [nodeName, setNodes, nodeBg,edgeName, setEdges,isChecked,setIsChecked]);
+
+
   const renderContextMenu = () => {
     if (!selectedNode) {
       // setSelectedNode(null);
@@ -613,6 +613,7 @@ console.log(selecteEdge);
       </Draggable>
     );
   };
+  
   const renderedgeMenu = () => {
     if (!selecteEdge) {
       // setSelectedNode(null);
@@ -635,6 +636,13 @@ console.log(selecteEdge);
               value={edgeName}
               onChange={(evt) => setedgeName(evt.target.value)}
             />
+             <span>Add ArrowClosed:</span>
+            <input
+            type="checkbox"
+              name="label"
+              checked={isChecked}
+              onChange={(evt) => setIsChecked(evt.target.checked)}
+            /><br/>
             <button onClick={() => setSelectedEdge(null)}>Ok</button>
           </div>
         </div>
