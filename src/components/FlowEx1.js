@@ -10,10 +10,15 @@ import ReactFlow, {
   addEdge,
   useReactFlow,
   MarkerType,
+  BezierEdge,
+  StraightEdge,
+  StepEdge,
+  SmoothStepEdge,
 } from "reactflow";
 
 // 👇 you need to import the reactflow styles
 import "reactflow/dist/style.css";
+import CustomEdges from "../custom_edge/CustomEdges";
 import Node1 from "../custom_nodes/Node1";
 const nodeColor = (node) => {
   switch (node.type) {
@@ -27,263 +32,285 @@ const nodeColor = (node) => {
 };
 const initialNodes = [
   {
-    "id": "11",
+    id: "11",
     type: "custom1",
-    "position": {
-        "x": 704.399875261829,
-        "y": 300.0598451319694
+    position: {
+      x: 738.0404481942137,
+      y: 252.40236681109116,
     },
-    "data": {
-        "label": "Enter App"
+    data: {
+      label: "Enter App",
+      targetPos: ["left"],
+      sourcePos: [],
     },
-    "width": 150,
-    "height": 36,
-    "selected": false,
-    "positionAbsolute": {
-        "x": 704.399875261829,
-        "y": 300.0598451319694
+    width: 150,
+    height: 36,
+    selected: false,
+    positionAbsolute: {
+      x: 738.0404481942137,
+      y: 252.40236681109116,
     },
-    "dragging": false,
-    "style": {
-        "backgroundColor": "#f25fd2"
-    }, 
-    "targetPosition": 'left',
-    "sourcePosition": 'right',
-},
-{
-    "id": "10",
-    "position": {
-        "x": 450.001162517703,
-        "y": 405.93226829890375
+    dragging: false,
+    style: {
+      backgroundColor: "#f25fd2",
     },
-    "data": {
-        "label": "Sign In with Email"
+    targetPosition: "left",
+    sourcePosition: "right",
+  },
+  {
+    id: "10",
+    type: "custom1",
+    position: {
+      x: 450.001162517703,
+      y: 405.0157847440766,
     },
-    "width": 150,
-    "height": 36,
-    "selected": false,
-    "positionAbsolute": {
-        "x": 450.001162517703,
-        "y": 405.93226829890375
+    data: {
+      label: "Sign In with Email",
+      targetPos: ["left", "bottom"],
+      sourcePos: ["right"],
     },
-    "dragging": false,
-    "style": {
-        "backgroundColor": "#a389e7"
+    width: 150,
+    height: 36,
+    selected: false,
+    positionAbsolute: {
+      x: 450.001162517703,
+      y: 405.0157847440766,
     },
-    "targetPosition": 'bottom',
-    "sourcePosition": 'right',
-},
-{
-    "id": "9",
-    "position": {
-        "x": 350.7167379804782,
-        "y": 487.68869995612494
+    dragging: false,
+    style: {
+      backgroundColor: "#a389e7",
     },
-    "data": {
-        "label": "Reset Password"
+    targetPosition: "bottom",
+    sourcePosition: "right",
+  },
+  {
+    id: "9",
+    type: "custom1",
+    position: {
+      x: 350.7167379804782,
+      y: 487.68869995612494,
     },
-    "width": 150,
-    "height": 36,
-    "selected": false,
-    "positionAbsolute": {
-        "x": 350.7167379804782,
-        "y": 487.68869995612494
+    data: {
+      label: "Reset Password",
+      targetPos: ["left"],
+      sourcePos: ["right"],
     },
-    "dragging": false,
-    "style": {
-        "backgroundColor": "#a389e7"
+    width: 150,
+    height: 36,
+    selected: false,
+    positionAbsolute: {
+      x: 350.7167379804782,
+      y: 487.68869995612494,
     },
-    "targetPosition": 'left',
-    "sourcePosition": 'right',
-},
-{
-    "id": "8",
-    "position": {
-        "x": 449.2113590249857,
-        "y": 157.8746112565257
+    dragging: false,
+    style: {
+      backgroundColor: "#a389e7",
     },
-    "data": {
-        "label": "Sign Up with Email "
+    targetPosition: "left",
+    sourcePosition: "right",
+  },
+  {
+    id: "8",
+    type: "custom1",
+    position: {
+      x: 449.2113590249857,
+      y: 157.8746112565257,
     },
-    "width": 150,
-    "height": 36,
-    "selected": false,
-    "positionAbsolute": {
-        "x": 449.2113590249857,
-        "y": 157.8746112565257
+    data: {
+      label: "Sign Up with Email ",
+      targetPos: ["left"],
+      sourcePos: ["right"],
     },
-    "dragging": false,
-    "style": {
-        "backgroundColor": "#a389e7"
-    }, 
-    "targetPosition": 'right',
-    "sourcePosition": 'left',
-},
-{
-    "id": "7",
-    "position": {
-        "x": 141.47534363448352,
-        "y": 487.5880054394003
+    width: 150,
+    height: 36,
+    selected: false,
+    positionAbsolute: {
+      x: 449.2113590249857,
+      y: 157.8746112565257,
     },
-    "data": {
-        "label": "Click Forgot Password"
+    dragging: false,
+    style: {
+      backgroundColor: "#a389e7",
     },
-    "width": 150,
-    "height": 36,
-    "selected": false,
-    "positionAbsolute": {
-        "x": 141.47534363448352,
-        "y": 487.5880054394003
+  },
+  {
+    id: "7",
+    type: "custom1",
+    position: {
+      x: 140.19493957733368,
+      y: 487.5880054394003,
     },
-    "dragging": false,
-    "style": {
-        "backgroundColor": "#a389e7"
+    data: {
+      label: "Click Forgot Password",
+      targetPos: ["top"],
+      sourcePos: ["right"],
     },
-    "targetPosition": 'top',
-    "sourcePosition": 'right',
-},
-{
-    "id": "6",
-    "position": {
-        "x": 140.19493957733368,
-        "y": 405.0157847440766
+    width: 150,
+    height: 36,
+    selected: false,
+    positionAbsolute: {
+      x: 140.19493957733368,
+      y: 487.5880054394003,
     },
-    "data": {
-        "label": "Know Your Password?"
+    dragging: false,
+    style: {
+      backgroundColor: "#a389e7",
     },
-    "width": 150,
-    "height": 36,
-    "selected": false,
-    "positionAbsolute": {
-        "x": 140.19493957733368,
-        "y": 405.0157847440766
+  },
+  {
+    id: "6",
+    type: "custom1",
+    position: {
+      x: 140.19493957733368,
+      y: 405.0157847440766,
     },
-    "dragging": false,
-    "style": {
-        "backgroundColor": "#00b77d"
-    }
-},
-{
-    "id": "5",
-    "position": {
-        "x": 139.63735810973907,
-        "y": 325.41887357415374
+    data: {
+      label: "Know Your Password?",
+      targetPos: ["top"],
+      sourcePos: ["right", "bottom"],
     },
-    "data": {
-        "label": "Use Google SSO?"
+    width: 150,
+    height: 36,
+    selected: false,
+    positionAbsolute: {
+      x: 140.19493957733368,
+      y: 405.0157847440766,
     },
-    "width": 150,
-    "height": 36,
-    "selected": false,
-    "positionAbsolute": {
-        "x": 139.63735810973907,
-        "y": 325.41887357415374
+    dragging: false,
+    style: {
+      backgroundColor: "#00b77d",
     },
-    "dragging": false,
-    "style": {
-        "backgroundColor": "#00b77d"
+  },
+  {
+    id: "5",
+    type: "custom1",
+    position: {
+      x: 140.19493957733368,
+      y: 325.41887357415374,
+    },
+    data: {
+      label: "Use Google SSO?",
+      targetPos: ["left"],
+      sourcePos: ["right", "bottom"],
+    },
+    width: 150,
+    height: 36,
+    selected: false,
+    positionAbsolute: {
+      x: 140.19493957733368,
+      y: 325.41887357415374,
+    },
+    dragging: false,
+    style: {
+      backgroundColor: "#00b77d",
     },
     // "sourcePosition": 'right',
-    "sourcePosition": 'bottom',
-    "targetPosition": 'left',
-},
-{
-    "id": "4",
-    "position": {
-        "x": 140.02139615683132,
-        "y": 157.46458242217312
+    sourcePosition: "bottom",
+    targetPosition: "left",
+  },
+  {
+    id: "4",
+    type: "custom1",
+    position: {
+      x: 140.19493957733368,
+      y: 157.46458242217312,
     },
-    "data": {
-        "label": "Use Google SSO?"
+    data: {
+      label: "Use Google SSO?",
+      targetPos: ["left"],
+      sourcePos: ["right", "bottom"],
     },
-    "width": 150,
-    "height": 36,
-    "selected": false,
-    "positionAbsolute": {
-        "x": 140.02139615683132,
-        "y": 157.46458242217312
+    width: 150,
+    height: 36,
+    selected: false,
+    positionAbsolute: {
+      x: 140.19493957733368,
+      y: 157.46458242217312,
     },
-    "dragging": false,
-    "style": {
-        "backgroundColor": "#00b77d"
-    } ,
-    "sourcePosition": 'left',
-    "targetPosition": 'right',
-},
-{
-    "id": "3",
-    "position": {
-        "x": -57.85115049302158,
-        "y": 325.344157693142
+    dragging: false,
+    style: {
+      backgroundColor: "#00b77d",
     },
-    "data": {
-        "label": "Sign In"
+    sourcePosition: "left",
+    targetPosition: "right",
+  },
+  {
+    id: "3",
+    type: "custom1",
+    position: {
+      x: -57.85115049302158,
+      y: 325.344157693142,
     },
-    "width": 150,
-    "height": 36,
-    "selected": false,
-    "positionAbsolute": {
-        "x": -57.85115049302158,
-        "y": 325.344157693142
+    data: {
+      label: "Sign In",
+      targetPos: ["left"],
+      sourcePos: ["right"],
     },
-    "dragging": false,
-    "style": {
-        "backgroundColor": "#9d8eec"
-    }
-    ,
-    "sourcePosition": 'right',
-    "targetPosition": 'left',
-},
-{
-    "id": "2",
-    "type":"custom1",
-    "position": {
-        "x": -57.274645793082584,
-        "y": 157.21966989115649
+    width: 150,
+    height: 36,
+    selected: false,
+    positionAbsolute: {
+      x: -57.85115049302158,
+      y: 325.344157693142,
     },
-    "data": {
-        "label": "Sign Up"
+    dragging: false,
+    style: {
+      backgroundColor: "#9d8eec",
     },
-    "width": 150,
-    "height": 36,
-    "selected": false,
-    "positionAbsolute": {
-        "x": -57.274645793082584,
-        "y": 157.21966989115649
+    sourcePosition: "right",
+    targetPosition: "left",
+  },
+  {
+    id: "2",
+    type: "custom1",
+    position: {
+      x: -57.274645793082584,
+      y: 157.21966989115649,
     },
-    "dragging": false,
-    "style": {
-        "backgroundColor": "#7a64e8"
-    }
-    ,
-  //   sourcePosition: 'left',
-  // targetPosition: 'right',
-},
-{
-    "id": "1",
-    type:"custom1",
-    
-    "position": {
-        "x": -216.8315001860757,
-        "y": 243.20899695538372
+    data: {
+      label: "Sign Up",
+      targetPos: ["left"],
+      sourcePos: ["right"],
     },
-    "data": {
-        "label": "Have an account?",
-        sourceNum:2,
-        targetNum:2,
+    width: 150,
+    height: 36,
+    selected: false,
+    positionAbsolute: {
+      x: -57.274645793082584,
+      y: 157.21966989115649,
     },
-    "width": 150,
-    "height": 36,
-    "selected": false,
-    "positionAbsolute": {
-        "x": -216.8315001860757,
-        "y": 243.20899695538372
+    dragging: false,
+    style: {
+      backgroundColor: "#7a64e8",
     },
-    "dragging": false,
-    "style": {
-        "backgroundColor": "#16b679"
-    }
-}
+    //   sourcePosition: 'left',
+    // targetPosition: 'right',
+  },
+  {
+    id: "1",
+    type: "custom1",
+
+    position: {
+      x: -216.8315001860757,
+      y: 243.20899695538372,
+    },
+    data: {
+      label: "Have an account?",
+      targetPos: [],
+      sourcePos: ["top", "bottom"],
+    },
+    width: 150,
+    height: 36,
+    selected: false,
+    positionAbsolute: {
+      x: -216.8315001860757,
+      y: 243.20899695538372,
+    },
+    dragging: false,
+    style: {
+      backgroundColor: "#16b679",
+    },
+  },
   // {
   //   id: "1",
   //   type: "input",
@@ -316,163 +343,172 @@ const initialNodes = [
 ];
 const node1 = { custom1: Node1 };
 
+const edgeTypes = {
+  customedge: CustomEdges,
+};
+
 const initialEdges = [
   {
-    "source": "1",
-    "sourceHandle": "unique3",
-    "target": "2",
-    "targetHandle": null,
-    "id": "reactflow__edge-2-1",
-    "label":"No",
-    "type": 'smoothstep',
-    markerEnd: {
-      type: MarkerType.ArrowClosed,
-    },
-},
-// {
-//     "source": "1",
-//     "sourceHandle": null,
-//     "target": "3",
-//     "targetHandle": null,
-//     "label":"Yes",
-//     "id": "reactflow__edge-1-3",
-//     "type": 'smoothstep',
-// },
-// {
-//     "source": "4",
-//     "sourceHandle": null,
-//     "target": "2",
-//     "targetHandle": null,
-//     "id": "reactflow__edge-4-2",
-//     "type": 'smoothstep',
-// },
-// {
-//     "source": "8",
-//     "sourceHandle": null,
-//     "target": "4",
-//     "targetHandle": null,
-//     "type": 'smoothstep',
-//     "id": "reactflow__edge-8-4",
-//     "label":"No",
-// },
-// {
-//     "source": "3",
-//     "sourceHandle": null,
-//     "target": "5",
-//     "type": 'smoothstep',
-//     "targetHandle": null,
-//     "id": "reactflow__edge-3-5"
-// },
-// {
-//     "source": "5",
-//     "sourceHandle": null,
-//     "target": "6",
-//     "label":"No",
-//     "type": 'straight',
-//     "targetHandle": null,
-//     "id": "reactflow__edge-5-6",
-//     markerEnd: {
-//       type: MarkerType.ArrowClosed,
-//     },
-// },
-// {
-//     "source": "6",
-//     "sourceHandle": null,
-//     "target": "7",
-//     "label":"No",
-//     "type": 'straight',
-//     "targetHandle": null,
-//     "id": "reactflow__edge-6-7",
-//      markerEnd: {
-//       type: MarkerType.ArrowClosed,
-//     },
-// },
-// {
-//   "source": "8",
-//   "sourceHandle": null,
-//   "target": "11",
-//   "type": 'smoothstep',
-//   "targetHandle": null,
-//   "id": "reactflow__edge-8-11",
-// },
-// {
-//     "source": "7",
-//     "sourceHandle": null,
-//     "target": "9",
-//     "targetHandle": null,
-//     "id": "reactflow__edge-7-9",
-//     markerEnd: {
-//       type: MarkerType.ArrowClosed,
-//     },  
-// },
-// {
-//     "source": "9",
-//     "sourceHandle": null,
-//     "target": "10",
-//     "targetHandle": null,
-//     "type": 'smoothstep',
-//     "id": "reactflow__edge-9-10",
-//     markerEnd: {
-//       type: MarkerType.ArrowClosed,
-//     },
-// },
-// {
-//     "source": "10",
-//     "sourceHandle": null,
-//     "target": "11",
-//     markerEnd: {
-//       type: MarkerType.ArrowClosed,
-//     },
-//     "targetHandle": null,
-//     "id": "reactflow__edge-10-11"
-// },
-// {
-//     "source": "6",
-//     "sourceHandle": null,
-//     "target": "10",
-//     "label":"Yes",
-//     "type": 'smoothstep',
-//     "targetHandle": null,
-//     "id": "reactflow__edge-6-10"
-// },
-// {
-//     "source": "5",
-//     "sourceHandle": null,
-//     "target": "11",
-//     "targetHandle": null,
-//     "type": 'smoothstep',
-//     "label":"Yes",
-//     "id": "reactflow__edge-5-11",
-//     markerEnd: {
-//       type: MarkerType.ArrowClosed,
-//     },
-// },
-// {
-//     "source": "4",
-//     "sourceHandle": null,
-//     "target": "11",
-//     "label":"Yes",
-//     "type": 'smoothstep',
-//     "targetHandle": null,
-//     "id": "reactflow__edge-4-11",
-//     markerEnd: {
-//       type: MarkerType.ArrowClosed,
-//     },
-// }
-  // { id: "e1-2", source: "1", target: "2", label: "to the", type: "step" },
-  // { id: "e2-3", source: "2", target: "3", animated: true },
-  // { id: "e1-3", source: "1", target: "3" },
-  // { id: "e4-3", source: "4", target: "3" },
-  // { id: "e1-4", source: "1", target: "4" },
-];
+      "source": "1",
+      "sourceHandle": "top1",
+      "target": "2",
+      "targetHandle": "left2",
+      "label":"No",
+      "id": "reactflow__edge-1top1-2left2",
+        markerEnd: {
+          type: MarkerType.ArrowClosed,
+        },
+  },
+  {
+      "source": "1",
+      "sourceHandle": "bottom1",
+      "target": "3",
+      "targetHandle": "left3",
+      "label":"Yes",
+      "id": "reactflow__edge-1bottom1-3left3",
+        markerEnd: {
+          type: MarkerType.ArrowClosed,
+        },
+      
+  },
+  {
+      "source": "3",
+      "sourceHandle": "right3",
+      "target": "5",
+      "targetHandle": "left5",
+      "id": "reactflow__edge-3right3-5left5",
+      markerEnd: {
+        type: MarkerType.ArrowClosed,
+       },
+  },
+  {
+      "source": "2",
+      "sourceHandle": "right2",
+      "target": "4",
+      "targetHandle": "left4",
+      "id": "reactflow__edge-2right2-4left4",
+      markerEnd: {
+        type: MarkerType.ArrowClosed,
+       },
+  },
+  {
+      "source": "5",
+      "sourceHandle": "bottom5",
+      "target": "6",
+      "targetHandle": "top6",
+      "label":"No",
+      "id": "reactflow__edge-5bottom5-6top6",
+      markerEnd: {
+        type: MarkerType.ArrowClosed,
+       },
+  },
+  {
+      "source": "6",
+      "sourceHandle": "bottom6",
+      "target": "7",
+      "targetHandle": "top7",
+      "label":"No",
+      "id": "reactflow__edge-6bottom6-7top7",
+      "selected": false,
+      markerEnd: {
+        type: MarkerType.ArrowClosed,
+       },
+  },
+  {
+      "source": "7",
+      "sourceHandle": "right7",
+      "target": "9",
+      "targetHandle": "left9",
+      "id": "reactflow__edge-7right7-9left9",
+      markerEnd: {
+        type: MarkerType.ArrowClosed,
+       },
+  },
+  {
+      "source": "6",
+      "sourceHandle": "right6",
+      "target": "10",
+      "targetHandle": "left10",
+      "label":"Yes",
+      "id": "reactflow__edge-6right6-10left10",
+      markerEnd: {
+        type: MarkerType.ArrowClosed,
+       },
+  },
+  {
+      "source": "9",
+      "sourceHandle": "right9",
+      "target": "10",
+      "targetHandle": "bottom10",
+      "id": "reactflow__edge-9right9-10bottom10",
+      markerEnd: {
+        type: MarkerType.ArrowClosed,
+       },
+  },
+  {
+      "source": "10",
+      "sourceHandle": "right10",
+      "target": "11",
+      "targetHandle": "left11",
+      "id": "reactflow__edge-10right10-11left11",
+      markerEnd: {
+        type: MarkerType.ArrowClosed,
+       },
+  },
+  {
+      "source": "5",
+      "sourceHandle": "right5",
+      "target": "11",
+      "label":"Yes",
+      "targetHandle": "left11",
+      "id": "reactflow__edge-5right5-11left11",
+      markerEnd: {
+        type: MarkerType.ArrowClosed,
+       },
+  },
+  {
+      "source": "4",
+      "sourceHandle": "bottom4",
+      "target": "11",
+      "targetHandle": "left11",
+      "label":"Yes",
+      "id": "reactflow__edge-4bottom4-11left11",
+      markerEnd: {
+        type: MarkerType.ArrowClosed,
+       },
+  },
+  {
+      "source": "4",
+      "sourceHandle": "right4",
+      "target": "8",
+      "targetHandle": "left8",
+      "label":"Yes",
+      "id": "reactflow__edge-4right4-8left8",
+      markerEnd: {
+        type: MarkerType.ArrowClosed,
+       },
+  },
+  {
+      "source": "8",
+      "sourceHandle": "right8",
+      "target": "11",
+      "targetHandle": "left11",
+      "id": "reactflow__edge-8right8-11left11",
+      markerEnd: {
+        type: MarkerType.ArrowClosed,
+       },
+  }
+]
+
+
 
 const FlowEx1 = () => {
   const reactFlowInstance = useReactFlow();
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const [contextMenuPos, setContextMenuPos] = useState({ x: 0, y: 0 });
-// console.log(nodes);
-// console.log(edges);
+  console.log(nodes);
+  console.log(edges);
   const [selectedNode, setSelectedNode] = useState(null);
 
   const [nodeName, setNodeName] = useState("");
@@ -505,8 +541,8 @@ const FlowEx1 = () => {
     };
     reactFlowInstance.addNodes(newNode);
   }, []);
-  const onNodeClick =(e) => {
-   console.log(e);
+  const onNodeClick = (e) => {
+    console.log(e);
   };
 
   //on Node Update
@@ -527,7 +563,6 @@ const FlowEx1 = () => {
       })
     );
   }, [nodeName, setNodes, nodeBg]);
-
 
   const renderContextMenu = () => {
     if (!selectedNode) {
@@ -559,7 +594,7 @@ const FlowEx1 = () => {
               value={nodeBg}
               onChange={(evt) => setNodeBg(evt.target.value)}
               style={{
-               width:'119px'
+                width: "119px",
               }}
             />
             <input
@@ -568,8 +603,8 @@ const FlowEx1 = () => {
               value={nodeBg}
               onChange={(evt) => setNodeBg(evt.target.value)}
               style={{
-                height:'22px'
-               }}
+                height: "22px",
+              }}
             />
             <button onClick={() => setSelectedNode(null)}>Ok</button>
           </div>
@@ -577,6 +612,8 @@ const FlowEx1 = () => {
       </Draggable>
     );
   };
+
+  const edgeTypes = { default: SmoothStepEdge };
   return (
     <>
       <button onClick={onClick} className="btn-add">
@@ -586,16 +623,16 @@ const FlowEx1 = () => {
       <ReactFlow
         nodes={nodes}
         edges={edges}
-        // defaultEdgeType="smoothstep"
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
         nodeTypes={node1}
         onNodeContextMenu={handleNodeContextMenu}
-        // onNodeClick={onNodeClick}
         renderNode={onNodeClick}
-      defa
         fitView
+        connectionLineType="smoothstep"
+        edgeTypes={edgeTypes}
+        defaultMarkerColor='black'
       >
         <MiniMap nodeColor={nodeColor} nodeStrokeWidth={3} zoomable pannable />
         <Controls />

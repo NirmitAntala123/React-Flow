@@ -4,43 +4,61 @@ import { Handle, Position } from "reactflow";
 const handleStyle = { left: 10 };
 
 function Node1(props) {
-  console.log(props);
   const onChange = useCallback((evt) => {
     console.log(evt.target.value);
   }, []);
 
-
   return (
-    <div className="text-updater-node">
-      <Handle
-      id="unique1"
+  <>
+      {/* <Handle
+        id="unique1"
         type="target"
         position={Position.Top}
         isConnectable={props.isConnectable}
       />
-       <Handle
-       id="unique2"
+      <Handle
+        id="unique2"
         type="target"
         position={Position.Right}
         isConnectable={props.isConnectable}
-      />
-      <div>
-        <label htmlFor="text">{props.data.label}</label>
+      /> */}
+      {props.data.targetPos !== undefined &&
+        props.data.targetPos.map((e) => {
+          // console.log(e+props.id);
+          return <Handle
+            id={e+props.id}
+            type="target"
+            position={e}
+            isConnectable={props.isConnectable}
+          />;
+        })}
+      
+        {props.data.label}
         {/* <input id="text" name="text" onChange={onChange} className="nodrag" /> */}
-      </div>
-      <Handle
+     
+      {props.data.sourcePos !== undefined &&
+        props.data.sourcePos.map((e) => {
+          // console.log(e+props.id);
+          return <Handle
+            id={e+props.id}
+            type="source"
+            position={e}
+            isConnectable={props.isConnectable}
+          />;
+        })}
+      {/* <Handle
       id="unique3"
         type="source"
-        position={Position.Bottom}
+        position="right"
         isConnectable={props.isConnectable}
       />
      <Handle
       id="unique4"
         type="source"
-        position={Position.Left}
+        position="left"
         isConnectable={props.isConnectable}
-      />
-    </div>
+      /> */}
+    </>
   );
 }
 
