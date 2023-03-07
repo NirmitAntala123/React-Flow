@@ -28,9 +28,10 @@ const nodeColor = (node) => {
 const initialNodes = [
   {
     "id": "11",
+    type: "custom1",
     "position": {
         "x": 704.399875261829,
-        "y": 324.0598451319694
+        "y": 300.0598451319694
     },
     "data": {
         "label": "Enter App"
@@ -40,7 +41,7 @@ const initialNodes = [
     "selected": false,
     "positionAbsolute": {
         "x": 704.399875261829,
-        "y": 324.0598451319694
+        "y": 300.0598451319694
     },
     "dragging": false,
     "style": {
@@ -206,7 +207,7 @@ const initialNodes = [
     "style": {
         "backgroundColor": "#00b77d"
     } ,
-    "sourcePosition": 'bottom',
+    "sourcePosition": 'left',
     "targetPosition": 'right',
 },
 {
@@ -235,6 +236,7 @@ const initialNodes = [
 },
 {
     "id": "2",
+    "type":"custom1",
     "position": {
         "x": -57.274645793082584,
         "y": 157.21966989115649
@@ -254,17 +256,21 @@ const initialNodes = [
         "backgroundColor": "#7a64e8"
     }
     ,
-    sourcePosition: 'left',
-  targetPosition: 'right',
+  //   sourcePosition: 'left',
+  // targetPosition: 'right',
 },
 {
     "id": "1",
+    type:"custom1",
+    
     "position": {
         "x": -216.8315001860757,
         "y": 243.20899695538372
     },
     "data": {
-        "label": "Have an account?"
+        "label": "Have an account?",
+        sourceNum:2,
+        targetNum:2,
     },
     "width": 150,
     "height": 36,
@@ -309,149 +315,150 @@ const initialNodes = [
   // },
 ];
 const node1 = { custom1: Node1 };
+
 const initialEdges = [
   {
-    "source": "2",
-    "sourceHandle": null,
-    "target": "1",
+    "source": "1",
+    "sourceHandle": "unique3",
+    "target": "2",
     "targetHandle": null,
     "id": "reactflow__edge-2-1",
     "label":"No",
     "type": 'smoothstep',
-    // markerEnd: {
-    //   type: MarkerType.ArrowClosed,
-    // },
-},
-{
-    "source": "1",
-    "sourceHandle": null,
-    "target": "3",
-    "targetHandle": null,
-    "label":"Yes",
-    "id": "reactflow__edge-1-3",
-    "type": 'smoothstep',
-},
-{
-    "source": "4",
-    "sourceHandle": null,
-    "target": "2",
-    "targetHandle": null,
-    "id": "reactflow__edge-4-2",
-    "type": 'smoothstep',
-},
-{
-    "source": "8",
-    "sourceHandle": null,
-    "target": "4",
-    "targetHandle": null,
-    "type": 'smoothstep',
-    "id": "reactflow__edge-8-4",
-    "label":"No",
-},
-{
-    "source": "3",
-    "sourceHandle": null,
-    "target": "5",
-    "type": 'smoothstep',
-    "targetHandle": null,
-    "id": "reactflow__edge-3-5"
-},
-{
-    "source": "5",
-    "sourceHandle": null,
-    "target": "6",
-    "label":"No",
-    "type": 'straight',
-    "targetHandle": null,
-    "id": "reactflow__edge-5-6",
     markerEnd: {
       type: MarkerType.ArrowClosed,
     },
 },
-{
-    "source": "6",
-    "sourceHandle": null,
-    "target": "7",
-    "label":"No",
-    "type": 'straight',
-    "targetHandle": null,
-    "id": "reactflow__edge-6-7",
-     markerEnd: {
-      type: MarkerType.ArrowClosed,
-    },
-},
-{
-  "source": "8",
-  "sourceHandle": null,
-  "target": "11",
-  "type": 'smoothstep',
-  "targetHandle": null,
-  "id": "reactflow__edge-8-11",
-},
-{
-    "source": "7",
-    "sourceHandle": null,
-    "target": "9",
-    "targetHandle": null,
-    "id": "reactflow__edge-7-9",
-    markerEnd: {
-      type: MarkerType.ArrowClosed,
-    },  
-},
-{
-    "source": "9",
-    "sourceHandle": null,
-    "target": "10",
-    "targetHandle": null,
-    "type": 'smoothstep',
-    "id": "reactflow__edge-9-10",
-    markerEnd: {
-      type: MarkerType.ArrowClosed,
-    },
-},
-{
-    "source": "10",
-    "sourceHandle": null,
-    "target": "11",
-    markerEnd: {
-      type: MarkerType.ArrowClosed,
-    },
-    "targetHandle": null,
-    "id": "reactflow__edge-10-11"
-},
-{
-    "source": "6",
-    "sourceHandle": null,
-    "target": "10",
-    "label":"Yes",
-    "type": 'smoothstep',
-    "targetHandle": null,
-    "id": "reactflow__edge-6-10"
-},
-{
-    "source": "5",
-    "sourceHandle": null,
-    "target": "11",
-    "targetHandle": null,
-    "type": 'smoothstep',
-    "label":"Yes",
-    "id": "reactflow__edge-5-11",
-    markerEnd: {
-      type: MarkerType.ArrowClosed,
-    },
-},
-{
-    "source": "4",
-    "sourceHandle": null,
-    "target": "11",
-    "label":"Yes",
-    // "type": 'smoothstep',
-    "targetHandle": null,
-    "id": "reactflow__edge-4-11",
-    markerEnd: {
-      type: MarkerType.ArrowClosed,
-    },
-}
+// {
+//     "source": "1",
+//     "sourceHandle": null,
+//     "target": "3",
+//     "targetHandle": null,
+//     "label":"Yes",
+//     "id": "reactflow__edge-1-3",
+//     "type": 'smoothstep',
+// },
+// {
+//     "source": "4",
+//     "sourceHandle": null,
+//     "target": "2",
+//     "targetHandle": null,
+//     "id": "reactflow__edge-4-2",
+//     "type": 'smoothstep',
+// },
+// {
+//     "source": "8",
+//     "sourceHandle": null,
+//     "target": "4",
+//     "targetHandle": null,
+//     "type": 'smoothstep',
+//     "id": "reactflow__edge-8-4",
+//     "label":"No",
+// },
+// {
+//     "source": "3",
+//     "sourceHandle": null,
+//     "target": "5",
+//     "type": 'smoothstep',
+//     "targetHandle": null,
+//     "id": "reactflow__edge-3-5"
+// },
+// {
+//     "source": "5",
+//     "sourceHandle": null,
+//     "target": "6",
+//     "label":"No",
+//     "type": 'straight',
+//     "targetHandle": null,
+//     "id": "reactflow__edge-5-6",
+//     markerEnd: {
+//       type: MarkerType.ArrowClosed,
+//     },
+// },
+// {
+//     "source": "6",
+//     "sourceHandle": null,
+//     "target": "7",
+//     "label":"No",
+//     "type": 'straight',
+//     "targetHandle": null,
+//     "id": "reactflow__edge-6-7",
+//      markerEnd: {
+//       type: MarkerType.ArrowClosed,
+//     },
+// },
+// {
+//   "source": "8",
+//   "sourceHandle": null,
+//   "target": "11",
+//   "type": 'smoothstep',
+//   "targetHandle": null,
+//   "id": "reactflow__edge-8-11",
+// },
+// {
+//     "source": "7",
+//     "sourceHandle": null,
+//     "target": "9",
+//     "targetHandle": null,
+//     "id": "reactflow__edge-7-9",
+//     markerEnd: {
+//       type: MarkerType.ArrowClosed,
+//     },  
+// },
+// {
+//     "source": "9",
+//     "sourceHandle": null,
+//     "target": "10",
+//     "targetHandle": null,
+//     "type": 'smoothstep',
+//     "id": "reactflow__edge-9-10",
+//     markerEnd: {
+//       type: MarkerType.ArrowClosed,
+//     },
+// },
+// {
+//     "source": "10",
+//     "sourceHandle": null,
+//     "target": "11",
+//     markerEnd: {
+//       type: MarkerType.ArrowClosed,
+//     },
+//     "targetHandle": null,
+//     "id": "reactflow__edge-10-11"
+// },
+// {
+//     "source": "6",
+//     "sourceHandle": null,
+//     "target": "10",
+//     "label":"Yes",
+//     "type": 'smoothstep',
+//     "targetHandle": null,
+//     "id": "reactflow__edge-6-10"
+// },
+// {
+//     "source": "5",
+//     "sourceHandle": null,
+//     "target": "11",
+//     "targetHandle": null,
+//     "type": 'smoothstep',
+//     "label":"Yes",
+//     "id": "reactflow__edge-5-11",
+//     markerEnd: {
+//       type: MarkerType.ArrowClosed,
+//     },
+// },
+// {
+//     "source": "4",
+//     "sourceHandle": null,
+//     "target": "11",
+//     "label":"Yes",
+//     "type": 'smoothstep',
+//     "targetHandle": null,
+//     "id": "reactflow__edge-4-11",
+//     markerEnd: {
+//       type: MarkerType.ArrowClosed,
+//     },
+// }
   // { id: "e1-2", source: "1", target: "2", label: "to the", type: "step" },
   // { id: "e2-3", source: "2", target: "3", animated: true },
   // { id: "e1-3", source: "1", target: "3" },
@@ -464,8 +471,8 @@ const FlowEx1 = () => {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const [contextMenuPos, setContextMenuPos] = useState({ x: 0, y: 0 });
-console.log(nodes);
-console.log(edges);
+// console.log(nodes);
+// console.log(edges);
   const [selectedNode, setSelectedNode] = useState(null);
 
   const [nodeName, setNodeName] = useState("");
@@ -579,6 +586,7 @@ console.log(edges);
       <ReactFlow
         nodes={nodes}
         edges={edges}
+        // defaultEdgeType="smoothstep"
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
@@ -586,6 +594,7 @@ console.log(edges);
         onNodeContextMenu={handleNodeContextMenu}
         // onNodeClick={onNodeClick}
         renderNode={onNodeClick}
+      defa
         fitView
       >
         <MiniMap nodeColor={nodeColor} nodeStrokeWidth={3} zoomable pannable />
