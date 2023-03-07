@@ -308,35 +308,7 @@ const initialNodes = [
       backgroundColor: "#16b679",
     },
   },
-  // {
-  //   id: "1",
-  //   type: "input",
-  //   data: { label: "Input Node" },
-  //   position: { x: 250, y: 25 },
-  //   style: { backgroundColor: "#6ede87", color: "white" },
-  // },
 
-  // {
-  //   id: "2",
-  //   // you can also pass a React component as a label
-  //   data: { label: "Default Node" },
-  //   position: { x: 100, y: 125 },
-  //   style: { backgroundColor: "#ff0072", color: "white" },
-  // },
-  // {
-  //   id: "3",
-  //   type: "output",
-  //   data: { label: "Output Node" },
-  //   position: { x: 250, y: 250 },
-  //   style: { backgroundColor: "#6865A5", color: "white" },
-  // },
-  // {
-  //   id: "4",
-  //   type: "custom1",
-  //   data: { label: "Output Node" },
-  //   position: { x: 400, y: 125 },
-  //   style: { backgroundColor: "#6865A5", color: "white" },
-  // },
 ];
 const node1 = { custom1: Node1 };
 
@@ -504,19 +476,33 @@ const FlowEx1 = () => {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const [contextMenuPos, setContextMenuPos] = useState({ x: 0, y: 0 });
+  const [EdgeMenuPos, setEdgeMenuPos] = useState({ x: 0, y: 0 });
+
   // console.log(nodes);
   // console.log(edges);
   const [selectedNode, setSelectedNode] = useState(null);
-
+  const [selecteEdge, setSelectedEdge] = useState(null);
+console.log(selecteEdge);
   const [nodeName, setNodeName] = useState("");
   const [nodeBg, setNodeBg] = useState("");
+  const [edgeName, setedgeName] = useState("");
 
   const handleNodeContextMenu = (event, node) => {
     event.preventDefault();
+    console.log(node);
     setSelectedNode(node);
     setContextMenuPos({ x: event.clientX, y: event.clientY });
     setNodeName(node.data.label);
     setNodeBg(node.style.backgroundColor);
+  };
+  const edgeDoubleClick = (event, node) => {
+    event.preventDefault();
+    console.log(event);
+  
+    setSelectedEdge(node);
+    setEdgeMenuPos({ x: event.pageX, y: event.pageY });
+    setedgeName(node.label);
+    // setNodeBg(node.style.backgroundColor);
   };
 
   const onConnect = useCallback(
@@ -535,13 +521,12 @@ const FlowEx1 = () => {
       },
       data: {
         label: `Node ${id}`,
+        targetPos: ["left"],
+        sourcePos: ["right"],
       },
     };
     reactFlowInstance.addNodes(newNode);
   }, []);
-  const onNodeClick = (e) => {
-    console.log(e);
-  };
 
   //on Node Update
 
@@ -560,8 +545,26 @@ const FlowEx1 = () => {
         return node;
       })
     );
-  }, [nodeName, setNodes, nodeBg]);
-
+  }, [edgeName, setNodes, nodeBg]);
+  useEffect(() => {
+    setEdges((nds) =>
+      nds.map((node) => {
+        // console.log(node);
+        if (selecteEdge) {
+          // console.log(selecteEdge);
+          if (node.id === selecteEdge.id) {
+            // console.log();
+            node = {
+              ...node,
+              label: edgeName,
+            };
+            // node.style = { ...node.style, backgroundColor: nodeBg };
+          }
+        }
+        return node;
+      })
+    );
+  }, [edgeName, setEdges]);
   const renderContextMenu = () => {
     if (!selectedNode) {
       // setSelectedNode(null);
@@ -610,6 +613,34 @@ const FlowEx1 = () => {
       </Draggable>
     );
   };
+  const renderedgeMenu = () => {
+    if (!selecteEdge) {
+      // setSelectedNode(null);
+      return null;
+    }
+
+    return (
+      <Draggable>
+        <div
+          style={{
+            position: "absolute",
+            left: EdgeMenuPos.x,
+            top: EdgeMenuPos.y,
+          }}
+        >
+          <div className="updatenode__controls">
+            <label>label:</label>
+            <input
+              name="label"
+              value={edgeName}
+              onChange={(evt) => setedgeName(evt.target.value)}
+            />
+            <button onClick={() => setSelectedEdge(null)}>Ok</button>
+          </div>
+        </div>
+      </Draggable>
+    );
+  };
 
   return (
     <>
@@ -625,11 +656,12 @@ const FlowEx1 = () => {
         onConnect={onConnect}
         nodeTypes={node1}
         onNodeContextMenu={handleNodeContextMenu}
-        renderNode={onNodeClick}
         fitView
         connectionLineType="smoothstep"
         edgeTypes={{default: SmoothStepEdge}}
         defaultMarkerColor='black'
+        onEdgeDoubleClick={edgeDoubleClick}
+        
       >
         <MiniMap nodeColor={nodeColor} nodeStrokeWidth={3} zoomable pannable />
         <Controls />
@@ -637,6 +669,8 @@ const FlowEx1 = () => {
       </ReactFlow>
 
       {renderContextMenu()}
+      {renderedgeMenu()}
+      
     </>
   );
 };
