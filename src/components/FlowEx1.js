@@ -1,3 +1,4 @@
+import Multiselect from "multiselect-react-dropdown";
 import { useCallback, useEffect, useState } from "react";
 import Draggable from "react-draggable";
 
@@ -15,7 +16,6 @@ import ReactFlow, {
   StepEdge,
   SmoothStepEdge,
 } from "reactflow";
-
 // 👇 you need to import the reactflow styles
 import "reactflow/dist/style.css";
 import CustomEdges from "../custom_edge/CustomEdges";
@@ -204,7 +204,6 @@ const initialNodes = [
     style: {
       backgroundColor: "#00b77d",
     },
-   
   },
   {
     id: "4",
@@ -281,7 +280,6 @@ const initialNodes = [
     style: {
       backgroundColor: "#7a64e8",
     },
-   
   },
   {
     id: "1",
@@ -308,7 +306,6 @@ const initialNodes = [
       backgroundColor: "#16b679",
     },
   },
-
 ];
 const node1 = { custom1: Node1 };
 
@@ -318,158 +315,162 @@ const edgeTypes = {
 
 const initialEdges = [
   {
-      "source": "1",
-      "sourceHandle": "top1",
-      "target": "2",
-      "targetHandle": "left2",
-      "label":"No",
-      "id": "reactflow__edge-1top1-2left2",
-        // 'markerEnd': {
-        //   'type': "arrowclosed",
-        // },
+    source: "1",
+    sourceHandle: "top1",
+    target: "2",
+    targetHandle: "left2",
+    label: "No",
+    id: "reactflow__edge-1top1-2left2",
+    // 'markerEnd': {
+    //   'type': "arrowclosed",
+    // },
   },
   {
-      "source": "1",
-      "sourceHandle": "bottom1",
-      "target": "3",
-      "targetHandle": "left3",
-      "label":"Yes",
-      "id": "reactflow__edge-1bottom1-3left3",
-        markerEnd: {
-          type: MarkerType.ArrowClosed,
-        },
-      
+    source: "1",
+    sourceHandle: "bottom1",
+    target: "3",
+    targetHandle: "left3",
+    label: "Yes",
+    id: "reactflow__edge-1bottom1-3left3",
+    markerEnd: {
+      type: MarkerType.ArrowClosed,
+    },
   },
   {
-      "source": "3",
-      "sourceHandle": "right3",
-      "target": "5",
-      "targetHandle": "left5",
-      "id": "reactflow__edge-3right3-5left5",
-      markerEnd: {
-        type: MarkerType.ArrowClosed,
-       },
+    source: "3",
+    sourceHandle: "right3",
+    target: "5",
+    targetHandle: "left5",
+    id: "reactflow__edge-3right3-5left5",
+    markerEnd: {
+      type: MarkerType.ArrowClosed,
+    },
   },
   {
-      "source": "2",
-      "sourceHandle": "right2",
-      "target": "4",
-      "targetHandle": "left4",
-      "id": "reactflow__edge-2right2-4left4",
-      markerEnd: {
-        type: MarkerType.ArrowClosed,
-       },
+    source: "2",
+    sourceHandle: "right2",
+    target: "4",
+    targetHandle: "left4",
+    id: "reactflow__edge-2right2-4left4",
+    markerEnd: {
+      type: MarkerType.ArrowClosed,
+    },
   },
   {
-      "source": "5",
-      "sourceHandle": "bottom5",
-      "target": "6",
-      "targetHandle": "top6",
-      "label":"No",
-      "id": "reactflow__edge-5bottom5-6top6",
-      markerEnd: {
-        type: MarkerType.ArrowClosed,
-       },
+    source: "5",
+    sourceHandle: "bottom5",
+    target: "6",
+    targetHandle: "top6",
+    label: "No",
+    id: "reactflow__edge-5bottom5-6top6",
+    markerEnd: {
+      type: MarkerType.ArrowClosed,
+    },
   },
   {
-      "source": "6",
-      "sourceHandle": "bottom6",
-      "target": "7",
-      "targetHandle": "top7",
-      "label":"No",
-      "id": "reactflow__edge-6bottom6-7top7",
-      "selected": false,
-      markerEnd: {
-        type: MarkerType.ArrowClosed,
-       },
+    source: "6",
+    sourceHandle: "bottom6",
+    target: "7",
+    targetHandle: "top7",
+    label: "No",
+    id: "reactflow__edge-6bottom6-7top7",
+    selected: false,
+    markerEnd: {
+      type: MarkerType.ArrowClosed,
+    },
   },
   {
-      "source": "7",
-      "sourceHandle": "right7",
-      "target": "9",
-      "targetHandle": "left9",
-      "id": "reactflow__edge-7right7-9left9",
-      markerEnd: {
-        type: MarkerType.ArrowClosed,
-       },
+    source: "7",
+    sourceHandle: "right7",
+    target: "9",
+    targetHandle: "left9",
+    id: "reactflow__edge-7right7-9left9",
+    markerEnd: {
+      type: MarkerType.ArrowClosed,
+    },
   },
   {
-      "source": "6",
-      "sourceHandle": "right6",
-      "target": "10",
-      "targetHandle": "left10",
-      "label":"Yes",
-      "id": "reactflow__edge-6right6-10left10",
-      markerEnd: {
-        type: MarkerType.ArrowClosed,
-       },
+    source: "6",
+    sourceHandle: "right6",
+    target: "10",
+    targetHandle: "left10",
+    label: "Yes",
+    id: "reactflow__edge-6right6-10left10",
+    markerEnd: {
+      type: MarkerType.ArrowClosed,
+    },
   },
   {
-      "source": "9",
-      "sourceHandle": "right9",
-      "target": "10",
-      "targetHandle": "bottom10",
-      "id": "reactflow__edge-9right9-10bottom10",
-      markerEnd: {
-        type: MarkerType.ArrowClosed,
-       },
+    source: "9",
+    sourceHandle: "right9",
+    target: "10",
+    targetHandle: "bottom10",
+    id: "reactflow__edge-9right9-10bottom10",
+    markerEnd: {
+      type: MarkerType.ArrowClosed,
+    },
   },
   {
-      "source": "10",
-      "sourceHandle": "right10",
-      "target": "11",
-      "targetHandle": "left11",
-      "id": "reactflow__edge-10right10-11left11",
-      markerEnd: {
-        type: MarkerType.ArrowClosed,
-       },
+    source: "10",
+    sourceHandle: "right10",
+    target: "11",
+    targetHandle: "left11",
+    id: "reactflow__edge-10right10-11left11",
+    markerEnd: {
+      type: MarkerType.ArrowClosed,
+    },
   },
   {
-      "source": "5",
-      "sourceHandle": "right5",
-      "target": "11",
-      "label":"Yes",
-      "targetHandle": "left11",
-      "id": "reactflow__edge-5right5-11left11",
-      markerEnd: {
-        type: MarkerType.ArrowClosed,
-       },
+    source: "5",
+    sourceHandle: "right5",
+    target: "11",
+    label: "Yes",
+    targetHandle: "left11",
+    id: "reactflow__edge-5right5-11left11",
+    markerEnd: {
+      type: MarkerType.ArrowClosed,
+    },
   },
   {
-      "source": "4",
-      "sourceHandle": "bottom4",
-      "target": "11",
-      "targetHandle": "left11",
-      "label":"Yes",
-      "id": "reactflow__edge-4bottom4-11left11",
-      markerEnd: {
-        type: MarkerType.ArrowClosed,
-       },
+    source: "4",
+    sourceHandle: "bottom4",
+    target: "11",
+    targetHandle: "left11",
+    label: "Yes",
+    id: "reactflow__edge-4bottom4-11left11",
+    markerEnd: {
+      type: MarkerType.ArrowClosed,
+    },
   },
   {
-      "source": "4",
-      "sourceHandle": "right4",
-      "target": "8",
-      "targetHandle": "left8",
-      "label":"Yes",
-      "id": "reactflow__edge-4right4-8left8",
-      markerEnd: {
-        type: MarkerType.ArrowClosed,
-       },
+    source: "4",
+    sourceHandle: "right4",
+    target: "8",
+    targetHandle: "left8",
+    label: "Yes",
+    id: "reactflow__edge-4right4-8left8",
+    markerEnd: {
+      type: MarkerType.ArrowClosed,
+    },
   },
   {
-      "source": "8",
-      "sourceHandle": "right8",
-      "target": "11",
-      "targetHandle": "left11",
-      "id": "reactflow__edge-8right8-11left11",
-      markerEnd: {
-        type: MarkerType.ArrowClosed,
-       },
-  }
-]
+    source: "8",
+    sourceHandle: "right8",
+    target: "11",
+    targetHandle: "left11",
+    id: "reactflow__edge-8right8-11left11",
+    markerEnd: {
+      type: MarkerType.ArrowClosed,
+    },
+  },
+];
 
-
+const options = [
+  { value: "right", id: 1 },
+  { value: "left", id: 2 },
+  { value: "top", id: 3 },
+  { value: "bottom", id: 4 },
+];
 
 const FlowEx1 = () => {
   const reactFlowInstance = useReactFlow();
@@ -477,16 +478,36 @@ const FlowEx1 = () => {
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const [contextMenuPos, setContextMenuPos] = useState({ x: 0, y: 0 });
   const [EdgeMenuPos, setEdgeMenuPos] = useState({ x: 0, y: 0 });
-  // console.log(nodes);
-  // console.log(edges);
+
   const [selectedNode, setSelectedNode] = useState(null);
   const [selecteEdge, setSelectedEdge] = useState(null);
   const [nodeName, setNodeName] = useState("");
   const [nodeBg, setNodeBg] = useState("");
   const [edgeName, setedgeName] = useState("");
   const [edgeArrow, setedgeArrow] = useState("");
-  console.log(edgeArrow);
   const [isChecked, setIsChecked] = useState(false);
+
+/// start select edges position
+  const [items, setItems] = useState([]);
+  const [itemstwo, setItemstwo] = useState([]);
+  const [sourcePos, setsourcePos] = useState([]);
+  const [targetPos, settargetPos] = useState([]);
+
+  console.log(sourcePos,targetPos);
+  const handleSelectitems = (selectedList) => {
+    setItems(selectedList);
+  };
+  const handleSelectitemsitemstwo = (selectedList) => {
+    setItemstwo(selectedList);
+  };
+  const handleRemoveitems = (selectedList) => {
+    setItems(selectedList);
+  };
+  const handleRemoveitemstwo = (selectedList) => {
+    setItemstwo(selectedList);
+  };
+/// end select edges position
+
   const handleNodeContextMenu = (event, node) => {
     event.preventDefault();
     console.log(node);
@@ -498,40 +519,18 @@ const FlowEx1 = () => {
   const edgeDoubleClick = (event, node) => {
     event.preventDefault();
     console.log(event);
-  
+
     setSelectedEdge(node);
     setEdgeMenuPos({ x: event.pageX, y: event.pageY });
     setedgeName(node.label);
     setedgeArrow(node.markerEnd);
-    node.markerEnd === undefined ? setIsChecked(false) : setIsChecked(true)
-    // console.log(node.markerEnd);
+    node.markerEnd === undefined ? setIsChecked(false) : setIsChecked(true);
   };
 
   const onConnect = useCallback(
     (params) => setEdges((eds) => addEdge(params, eds)),
     [setEdges]
   );
-
-  const onClick = useCallback(() => {
-    const id = `${++initialNodes.length}`;
-    const newNode = {
-      id,
-      type:'custom1',
-      position: {
-        x: Math.random() * 500,
-        y: Math.random() * 500,
-      },
-      data: {
-        label: `Node ${id}`,
-        targetPos: ["left"],
-        sourcePos: ["right"],
-      },
-    };
-    reactFlowInstance.addNodes(newNode);
-  }, []);
-
-  //on Node Update
-
   useEffect(() => {
     setNodes((nds) =>
       nds.map((node) => {
@@ -548,23 +547,47 @@ const FlowEx1 = () => {
       })
     );
     setEdges((nds) =>
-    nds.map((node) => {
-      if (selecteEdge) {
-        if (node.id === selecteEdge.id) {
-          node = {
-            ...node,
-            label: edgeName,
-          };
-          isChecked? node = { ...node, markerEnd: {type: 'arrowclosed'}   }:node = { ...node, markerEnd: undefined   }
-          // node.style = { ...node.style, backgroundColor: nodeBg };
+      nds.map((edge) => {
+        if (selecteEdge) {
+          if (edge.id === selecteEdge.id) {
+            edge = {
+              ...edge,
+              label: edgeName,
+            };
+            isChecked
+              ? (edge = { ...edge, markerEnd: { type: "arrowclosed" } })
+              : (edge = { ...edge, markerEnd: undefined });
+          }
         }
-      }
-      return node;
-    })
-  );
-  }, [nodeName, setNodes, nodeBg,edgeName, setEdges,isChecked,setIsChecked]);
+        return edge;
+      })
+    );
+    setsourcePos(items.map((item)=>item.value));
+    settargetPos(itemstwo.map((item)=>item.value));
+  }, [nodeName, setNodes, nodeBg, edgeName, setEdges, isChecked, setIsChecked,items,itemstwo]);
 
+  const onClick = useCallback(() => {
+    // console.log(sourcePos,targetPos);
+    const id = `${++initialNodes.length}`;
+    const newNode = {
+      id,
+      type: "custom1",
+      position: {
+        x: Math.random() * 500,
+        y: Math.random() * 500,
+      },
+      data: {
+        label: `Node ${id}`,
+        targetPos: targetPos,
+        sourcePos: sourcePos,
+      },
+    };
+    reactFlowInstance.addNodes(newNode);
+  }, [sourcePos,targetPos]);
 
+  //on Node Update
+
+  
   const renderContextMenu = () => {
     if (!selectedNode) {
       // setSelectedNode(null);
@@ -580,7 +603,6 @@ const FlowEx1 = () => {
             top: contextMenuPos.y,
           }}
         >
-        
           <div className="updatenode__controls">
             <label>label:</label>
             <input
@@ -613,7 +635,7 @@ const FlowEx1 = () => {
       </Draggable>
     );
   };
-  
+
   const renderedgeMenu = () => {
     if (!selecteEdge) {
       // setSelectedNode(null);
@@ -636,25 +658,54 @@ const FlowEx1 = () => {
               value={edgeName}
               onChange={(evt) => setedgeName(evt.target.value)}
             />
-             <span>Add ArrowClosed:</span>
+            <span>Add Arrow:</span>
             <input
-            type="checkbox"
+              type="checkbox"
               name="label"
               checked={isChecked}
               onChange={(evt) => setIsChecked(evt.target.checked)}
-            /><br/>
+            />
+            <br />
             <button onClick={() => setSelectedEdge(null)}>Ok</button>
           </div>
         </div>
       </Draggable>
     );
   };
-
+ 
   return (
     <>
-      <button onClick={onClick} className="btn-add">
-        add node
-      </button>
+      <div
+        style={{
+          position: "absolute",
+          left: 208,
+          top: -9,
+        }}
+      >
+        <div className="updatenode__controls">
+          <Multiselect
+            options={options.filter((option) => !itemstwo.includes(option))} // Options to display in the dropdown
+            selectedValues={items} // Preselected value to persist in dropdown
+            onSelect={handleSelectitems} // Function will trigger on select event
+            onRemove={handleRemoveitems} // Function will trigger on remove event
+            displayValue="value" // Property name to display in the dropdown options
+            placeholder="Select SourcePosition"
+            // disablePreSelectedValues={true}
+          />
+          <Multiselect
+            options={options.filter((option) => !items.includes(option))} // Options to display in the dropdown
+            selectedValues={itemstwo} // Preselected value to persist in dropdown
+            onSelect={handleSelectitemsitemstwo} // Function will trigger on select event
+            onRemove={handleRemoveitemstwo} // Function will trigger on remove event
+            displayValue="value" // Property name to display in the dropdown options
+            placeholder="Select TargetPosition"
+          />
+          {/* <button onClick={() => setSelectedEdge(null)}>Ok</button> */}
+          <button onClick={onClick} className="btn-add">
+            add node
+          </button>
+        </div>
+      </div>
 
       <ReactFlow
         nodes={nodes}
@@ -666,10 +717,9 @@ const FlowEx1 = () => {
         onNodeContextMenu={handleNodeContextMenu}
         fitView
         connectionLineType="smoothstep"
-        edgeTypes={{default: SmoothStepEdge}}
-        defaultMarkerColor='black'
+        edgeTypes={{ default: SmoothStepEdge }}
+        defaultMarkerColor="black"
         onEdgeDoubleClick={edgeDoubleClick}
-        
       >
         <MiniMap nodeColor={nodeColor} nodeStrokeWidth={3} zoomable pannable />
         <Controls />
@@ -678,7 +728,6 @@ const FlowEx1 = () => {
 
       {renderContextMenu()}
       {renderedgeMenu()}
-      
     </>
   );
 };

@@ -7,7 +7,7 @@ function Node1(props) {
   // const onChange = useCallback((evt) => {
   //   console.log(evt.target.value);
   // }, []);
-
+// console.log('pro',props);
   return (
   <>
       {props.data.targetPos !== undefined &&
